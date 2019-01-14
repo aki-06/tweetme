@@ -3,5 +3,5 @@ from .views import *
 
 urlpatterns = [
     url(r'^$', TweetListView.as_view(), name='list'),
-    url(r'^1/', TweetDetailView.as_view(), name='detal'),
+    url(r'^(?P<pk>\d+)/$', TweetDetailView.as_view(), name='detal'),
 ]

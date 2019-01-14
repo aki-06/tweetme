@@ -1,4 +1,4 @@
-# from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 from .models import Tweet
 
@@ -7,9 +7,9 @@ class TweetDetailView(DetailView):
     """tweetの詳細に関するクラス"""
     queryset = Tweet.objects.all()
 
-    def get_object(self):
-        """tweetの詳細をget"""
-        return Tweet.objects.get(id=1)
+    # def get_object(self):
+    #     """tweetの詳細をget"""
+    #     return Tweet.objects.get(id=1)
 
 
 class TweetListView(ListView):
