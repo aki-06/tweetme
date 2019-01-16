@@ -12,8 +12,8 @@ class TweetModelForm(forms.ModelForm):
         ]
         #exclude = ['user']
 
-    def clean_content(self, *args, **kwargs):
-        content = 'abc'
-        if content == 'abc':
-            raise forms.ValidationError('Cannot be abc')
-        return content
+    # def clean_content(self, *args, **kwargs):
+    #     content = 'abc'
+    #     if content == 'abc':
+    #         raise forms.ValidationError('Cannot be abc')
+    #     return content
