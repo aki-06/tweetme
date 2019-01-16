@@ -1,21 +1,24 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView
 from .forms import TweetModelForm
+from .mixins import FormUserNeededMixin
 from .models import Tweet
 
-class TweetCreateView(CreateView):
+class TweetCreateView(FormUserNeededMixin, CreateView):
     """tweetするクラス"""
     form_class = TweetModelForm
     template_name = 'tweets/create_view.html'
     success_url = '/tweet/create/'
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super(TweetCreateView, self).form_valid(form)
 
 class TweetDetailView(DetailView):
     """tweetの詳細に関するクラス"""
     queryset = Tweet.objects.all()
+
+    # def get_object(self):
+    #     """tweetの詳細をget"""
+    #     return Tweet.objects.get(id=1)
 
 
 class TweetListView(ListView):
