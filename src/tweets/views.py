@@ -56,6 +56,8 @@ class TweetListView(ListView):
     def get_context_data(self, *args, **kwargs):
         """tweetのデータを取得"""
         context = super(TweetListView, self).get_context_data(*args, **kwargs)
+        context['create_form'] = TweetModelForm()
+        context['create_url'] = reverse_lazy('tweet:create')
         return context
 
 
