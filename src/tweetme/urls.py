@@ -25,7 +25,10 @@ from .views import *
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', TweetListView.as_view(), name='home'),
-    url(r'^tweet/', include('tweets.urls', namespace='tweet')),
+    # includeの仕様が変更されたので、以下の書き方だとmigrate時にうまくいかない
+    # url(r'^tweet/', include('tweets.urls', namespace='tweet')),
+    url(r'^tweet/', include(('tweets.urls', 'tweet'),)),
+    url(r'^api/tweet/', include(('tweets.api.urls', 'tweet-api'),)),
 ]
 
 if settings.DEBUG:
