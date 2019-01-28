@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^$', TweetListView.as_view(), name='home'),
     # includeの仕様が変更されたので、以下の書き方だとmigrate時にうまくいかない
     # url(r'^tweet/', include('tweets.urls', namespace='tweet')),
+    url(r'^profiles/', include(('accounts.urls', 'profiles'),)),
     url(r'^tweet/', include(('tweets.urls', 'tweet'),)),
     url(r'^api/tweet/', include(('tweets.api.urls', 'tweet-api'),)),
 ]
