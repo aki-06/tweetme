@@ -4,10 +4,14 @@
 
 <div class="row">
     <div class="col-sm-3 col-xs-12">
-        <h1>{{ object.username }}</h1>
-        <hr/>
-        <p>Followers: {{ object.followed_by.all.count }}</p>
-        <p><a href="btn btn-link" href="{% url 'profiles:follow' username=object.username %}">Follow</a></p>
+      <h1>{{ object.username }}</h1>
+      <hr/>
+      <p>Followers: {{ object.followed_by.all.count }}</p>
+        {% if user.username != username %}
+        <p><a class="btn btn-link" href="{{ object.profile.get_follow_url }}">
+          {% if following %}Unfollow{% else %}Follow{% endif %}
+        </a></p>
+        {% endif %}
     </div>
     <div class="col-sm-9 col-xs-12">
         <h1>Tweets</h1>
