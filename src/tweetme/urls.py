@@ -18,7 +18,7 @@ from django.contrib import admin
 
 from django.conf import settings
 from django.conf.urls.static import static
-
+from hashtags.views import HashTagView
 from tweets.views import TweetListView
 from .views import *
 
@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^$', TweetListView.as_view(), name='home'),
     # includeの仕様が変更されたので、以下の書き方だとmigrate時にうまくいかない
     # url(r'^tweet/', include('tweets.urls', namespace='tweet')),
+    url(r'^tags/(?P<hashtag>.*)/$', HashTagView.as_view(), name='hashtag'),
     url(r'^tweet/', include(('tweets.urls', 'tweet'),)),
     url(r'^api/tweet/', include(('tweets.api.urls', 'tweet-api'),)),
     url(r'^', include(('accounts.urls', 'profiles'),)),
